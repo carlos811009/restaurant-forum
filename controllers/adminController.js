@@ -1,32 +1,18 @@
+const db = require('../models')
+const Restaurant = db.Restaurant
+
+
 const adminController = {
-  getRestautants: (req, res) => {
-    return res.render('admin/restaurants')
-  },
 
-  createRestaurant: (req, res) => {
-    return res.render('create')
-  },
-
-  postRestaurant: (req, res) => {
-
-  },
   getRestaurants: (req, res) => {
+    return Restaurant.findAll({
+      raw: true,
+      nest: true
+    })
+      .then(restaurants => {
+        return res.render('admin/restaurants', { restaurants })
+      })
 
-  },
-  getRestaurant: (req, res) => {
-
-  },
-  editRestaurant: (req, res) => {
-
-  },
-  putRestaurant: (req, res) => {
-
-  },
-  deleteRestaurant: (req, res) => {
-
-  },
-
-
+  }
 }
-
 module.exports = adminController
