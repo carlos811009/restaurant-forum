@@ -4,6 +4,7 @@ const db = require('./models')
 const session = require("express-session")
 const flash = require('connect-flash')
 const passport = require('./config/passport')
+const methodOverride = require('method-override')
 const app = express()
 const port = 3000
 
@@ -13,6 +14,7 @@ app.set('view engine', 'handlebars')
 app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }))
 app.use(flash())
+app.use(methodOverride('_method'))
 app.use(passport.initialize())
 app.use(passport.session())
 
