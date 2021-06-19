@@ -3,11 +3,15 @@ const exphbs = require('express-handlebars')
 const db = require('./models')
 const session = require("express-session")
 const flash = require('connect-flash')
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const passport = require('./config/passport')
 const methodOverride = require('method-override')
 const app = express()
 const port = process.env.PORT || 3000
-
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
