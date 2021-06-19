@@ -11,11 +11,11 @@ if (process.env.NODE_ENV !== 'production') {
 const passport = require('./config/passport')
 const methodOverride = require('method-override')
 const app = express()
+app.use(express.urlencoded({ extended: true }))
 const port = process.env.PORT || 3000
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
-app.use(express.urlencoded({ extended: true }))
 app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }))
 app.use(flash())
 app.use('/upload', express.static(__dirname + '/upload'))

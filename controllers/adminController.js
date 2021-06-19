@@ -22,6 +22,7 @@ const adminController = {
 
   postRestaurant: (req, res) => {
     const { name, tel, address, opening_hours, description } = req.body
+    console.log('post', req.body)
     if (!name) {
       req.flash('error_messages', "name didn't exist")
       return res.redirect('back')
@@ -73,6 +74,7 @@ const adminController = {
   },
   putRestaurant: (req, res) => {
     const { name, tel, address, opening_hours, description } = req.body
+    console.log('put', req.body)
     if (!name) {
       req.flash('error_messages', "name didn't exist")
       return res.redirect('back')
